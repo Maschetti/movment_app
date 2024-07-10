@@ -1,4 +1,5 @@
 // import ClientList from '@/components/ClientList';
+import ClientList from '@/components/ClientList';
 import React, { useCallback, useEffect, useState } from 'react';
 import { Image, View, StyleSheet, Text } from 'react-native';
 
@@ -46,12 +47,12 @@ export default function Home() {
                 source={require('../assets/images/Logo.jpg')}
                 style={homeStyle.image}
             />
-            {/* 
+            
             <ClientList
                 clientList={clients}
             >
 
-            </ClientList> */}
+            </ClientList>
         </View>
     );
 }
