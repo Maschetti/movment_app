@@ -50,9 +50,7 @@ export default function Home() {
             
             <ClientList
                 clientList={clients}
-            >
-
-            </ClientList>
+            />
         </View>
     );
 }
@@ -68,7 +66,7 @@ const homeStyle = StyleSheet.create({
     },
     image: {
         width: '100%',
-        height: 200,
+        height: 160,
         resizeMode: 'contain',
     },
 });
