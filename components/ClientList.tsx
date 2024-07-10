@@ -1,9 +1,11 @@
+import { useRouter } from 'expo-router';
 import React, { useState, useRef } from 'react';
-import { FlatList, View, Text, StyleSheet, TextInput, Image } from 'react-native';
+import { FlatList, View, Text, StyleSheet, TextInput, Image, TouchableOpacity, Alert } from 'react-native';
 
 type ItemProps = {
     name: string,
     days: number,
+    id: number,
 }
 
 type ClientListProps = {
@@ -28,17 +30,30 @@ function ItemSeparator() {
 
 export default function ClientList({ clientList }: ClientListProps) {
     const [searchQuery, setSearchQuery] = useState('');
+    const router = useRouter();
     const flatListRef = useRef<FlatList>(null);
 
     const renderItem = ({ item }: { item: ItemProps }) => {
         const backgroundColor = getBackgroundColor(item.days);
         return (
-            <View style={clientListStyle.item}>
+            <TouchableOpacity style={clientListStyle.item} onPress={() => router.push(`/client/${item.id}`)}>
                 <View style={[clientListStyle.circle, { backgroundColor }]}>
                     <Text style={clientListStyle.days}>{item.days}</Text>
                 </View>
                 <Text style={clientListStyle.text}>{item.name}</Text>
-            </View>
+                <View style={clientListStyle.buttonsContainer}>
+                    <TouchableOpacity style={clientListStyle.buttonF} onPress={() => {
+                        Alert.alert('Aluno faltou')
+                    }}>
+                        <Text style={clientListStyle.buttonText}>F</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={clientListStyle.buttonP} onPress={() => {
+                        Alert.alert('Aluno esteve presente')
+                    }}>
+                        <Text style={clientListStyle.buttonText}>P</Text>
+                    </TouchableOpacity>
+                </View>
+            </TouchableOpacity>
         );
     };
 
@@ -132,5 +147,29 @@ const clientListStyle = StyleSheet.create({
     searchBar: {
         flex: 1,
         fontSize: 20,
+    },
+    buttonsContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 10,
+    },
+    buttonF: {
+        backgroundColor: 'red',
+        padding: 10,
+        borderRadius: 50,
+        marginLeft: 5,
+    },
+    buttonP: {
+        backgroundColor: 'green',
+        padding: 10,
+        borderRadius: 50,
+        marginLeft: 5,
+    },
+    buttonText: {
+        color: 'white',
+        fontSize: 16,
+        fontWeight: 'bold',
+        width: 20,
+        textAlign: 'center'
     },
 });
