@@ -3,7 +3,7 @@ import { useRouter } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import { Image, View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
-export default function Home() {
+export default function HomePage() {
     const router = useRouter();
 
     const [clients, setClients] = useState([
@@ -89,7 +89,7 @@ export default function Home() {
 
             <ClientList clientList={clients} />
 
-            <TouchableOpacity style={homeStyle.addButton} onPress={() => router.push('/')}>
+            <TouchableOpacity style={homeStyle.addButton} onPress={() => router.push('/client/create')}>
                 <Image 
                     source={require('../assets/images/add.png')}
                     style={homeStyle.addButtonImage}
