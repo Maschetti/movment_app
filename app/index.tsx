@@ -10,62 +10,77 @@ export default function HomePage() {
         {
             name: 'Maria',
             days: 2,
+            id: 1,
         },
         {
             name: 'Joao',
             days: 3,
+            id: 2,
         },
         {
             name: 'Anesia',
             days: 4,
+            id: 3,
         },
         {
             name: 'Dulce',
             days: -1,
+            id: 4,
         },
         {
             name: 'Jose',
             days: -2,
+            id: 5,
         },
         {
             name: 'Marta',
             days: 2,
+            id: 6,
         },
         {
             name: 'Marko',
             days: 3,
+            id: 7,
         },
         {
             name: 'Mateus',
             days: 4,
+            id: 8,
         },
         {
             name: 'Alice',
             days: -1,
+            id: 9,
         },
         {
             name: 'Camila',
             days: -2,
+            id: 10,
         },
         {
             name: 'Beatriz',
             days: 2,
+            id: 11,
         },
         {
             name: 'Guilherme',
             days: 3,
+            id: 12,
         },
         {
             name: 'Gabriel',
             days: 4,
+            id: 13,
         },
         {
             name: 'Ana',
             days: -1,
+            id: 14,
         },
         {
             name: 'Cleo',
             days: -2,
+            id: 15,
         },
     ]);
 
@@ -112,7 +127,7 @@ const homeStyle = StyleSheet.create({
         width: '100%',
         height: 160,
         resizeMode: 'contain',
-        marginTop: 20,  // Optional: Adjust as needed to center the image vertically
+        marginTop: 20,
     },
     addButton: {
         position: 'absolute',
