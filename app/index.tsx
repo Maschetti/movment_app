@@ -1,9 +1,11 @@
-// import ClientList from '@/components/ClientList';
 import ClientList from '@/components/ClientList';
-import React, { useCallback, useEffect, useState } from 'react';
-import { Image, View, StyleSheet, Text } from 'react-native';
+import { useRouter } from 'expo-router';
+import React, { useEffect, useState } from 'react';
+import { Image, View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 export default function Home() {
+    const router = useRouter();
+
     const [clients, setClients] = useState([
         {
             name: 'Maria',
@@ -25,17 +27,14 @@ export default function Home() {
             name: 'Jose',
             days: -2,
         },
-    ])
-
-    
-    
+    ]);
 
     function sortClientsByDays() {
         setClients((clients) => {
-          const sortedClients = [...clients].sort((a, b) => a.days - b.days);
-          return sortedClients;
+            const sortedClients = [...clients].sort((a, b) => a.days - b.days);
+            return sortedClients;
         });
-    };
+    }
 
     useEffect(() => {
         sortClientsByDays();
@@ -47,10 +46,15 @@ export default function Home() {
                 source={require('../assets/images/Logo.jpg')}
                 style={homeStyle.image}
             />
-            
-            <ClientList
-                clientList={clients}
-            />
+
+            <ClientList clientList={clients} />
+
+            <TouchableOpacity style={homeStyle.addButton} onPress={() => router.push('/')}>
+                <Image 
+                    source={require('../assets/images/add.png')}
+                    style={homeStyle.addButtonImage}
+                />
+            </TouchableOpacity>
         </View>
     );
 }
@@ -68,5 +72,19 @@ const homeStyle = StyleSheet.create({
         width: '100%',
         height: 160,
         resizeMode: 'contain',
+        marginTop: 20,  // Optional: Adjust as needed to center the image vertically
     },
+    addButton: {
+        position: 'absolute',
+        bottom: 10,
+        right: 10,
+        backgroundColor: 'white',
+        padding: 10,
+        borderRadius: 50,
+        alignItems: 'center',
+    },
+    addButtonImage: {
+        width: 30,
+        height: 30,
+    }
 });
