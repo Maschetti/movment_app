@@ -26,15 +26,21 @@ export default function RootLayout() {
     <Stack>
       <Stack.Screen
         name="create"
-        options={{
-          headerShown: true,
-          title: 'Voltar',
-          headerStyle: {
-            backgroundColor: 'rgba(139, 191, 168, 1.0)',
-          },
-          headerTintColor: 'white',
-        }}
+        options={optionWithHeader}
+      />
+      <Stack.Screen 
+        name="[id]"
+        options={optionWithHeader}
       />
     </Stack>
   );
+}
+
+const optionWithHeader = {
+  headerShown: true,
+  title: 'Voltar',
+  headerStyle: {
+    backgroundColor: 'rgba(139, 191, 168, 1.0)',
+  },
+  headerTintColor: 'white',
 }
