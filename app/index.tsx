@@ -27,6 +27,46 @@ export default function Home() {
             name: 'Jose',
             days: -2,
         },
+        {
+            name: 'Marta',
+            days: 2,
+        },
+        {
+            name: 'Marko',
+            days: 3,
+        },
+        {
+            name: 'Mateus',
+            days: 4,
+        },
+        {
+            name: 'Alice',
+            days: -1,
+        },
+        {
+            name: 'Camila',
+            days: -2,
+        },
+        {
+            name: 'Beatriz',
+            days: 2,
+        },
+        {
+            name: 'Guilherme',
+            days: 3,
+        },
+        {
+            name: 'Gabriel',
+            days: 4,
+        },
+        {
+            name: 'Ana',
+            days: -1,
+        },
+        {
+            name: 'Cleo',
+            days: -2,
+        },
     ]);
 
     function sortClientsByDays() {
