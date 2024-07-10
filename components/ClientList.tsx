@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { FlatList, View, Text, StyleSheet, TextInput, Image } from 'react-native';
 
 type ItemProps = {
@@ -28,6 +28,7 @@ function ItemSeparator() {
 
 export default function ClientList({ clientList }: ClientListProps) {
     const [searchQuery, setSearchQuery] = useState('');
+    const flatListRef = useRef<FlatList>(null);
 
     const renderItem = ({ item }: { item: ItemProps }) => {
         const backgroundColor = getBackgroundColor(item.days);
@@ -47,6 +48,13 @@ export default function ClientList({ clientList }: ClientListProps) {
         client.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
+    const handleSearchChange = (text: string) => {
+        setSearchQuery(text);
+        if (flatListRef.current) {
+            flatListRef.current.scrollToOffset({ animated: true, offset: 0 });
+        }
+    };
+
     return (
         <View style={clientListStyle.container}>
             <View style={clientListStyle.searchContainer}>
@@ -58,10 +66,11 @@ export default function ClientList({ clientList }: ClientListProps) {
                     style={clientListStyle.searchBar}
                     placeholder="Procure um cliente"
                     value={searchQuery}
-                    onChangeText={text => setSearchQuery(text)}
+                    onChangeText={handleSearchChange}
                 />
             </View>
             <FlatList
+                ref={flatListRef}
                 data={filteredClientList}
                 renderItem={renderItem}
                 keyExtractor={(item) => item.name}
@@ -110,11 +119,8 @@ const clientListStyle = StyleSheet.create({
     searchContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-
         backgroundColor: 'white',
-        
         height: 60,
-
         borderRadius: 50,
         marginBottom: 10,
         paddingLeft: 20,
