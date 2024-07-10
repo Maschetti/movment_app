@@ -1,4 +1,5 @@
-import { FlatList, View, Text, StyleSheet } from "react-native";
+import React, { useState } from 'react';
+import { FlatList, View, Text, StyleSheet, TextInput, Image } from 'react-native';
 
 type ItemProps = {
     name: string,
@@ -19,13 +20,15 @@ const getBackgroundColor = (days: number) => {
     }
 };
 
-function ItemSeparator(){
+function ItemSeparator() {
     return (
         <View style={clientListStyle.separator} />
     )
 }
 
 export default function ClientList({ clientList }: ClientListProps) {
+    const [searchQuery, setSearchQuery] = useState('');
+
     const renderItem = ({ item }: { item: ItemProps }) => {
         const backgroundColor = getBackgroundColor(item.days);
         return (
@@ -40,10 +43,26 @@ export default function ClientList({ clientList }: ClientListProps) {
         );
     };
 
+    const filteredClientList = clientList.filter(client =>
+        client.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
     return (
         <View style={clientListStyle.container}>
+            <View style={clientListStyle.searchContainer}>
+                <Image
+                    source={require('../assets/images/search.png')} // Update the path to your search icon
+                    style={clientListStyle.searchIcon}
+                />
+                <TextInput
+                    style={clientListStyle.searchBar}
+                    placeholder="Procure um cliente"
+                    value={searchQuery}
+                    onChangeText={text => setSearchQuery(text)}
+                />
+            </View>
             <FlatList
-                data={clientList}
+                data={filteredClientList}
                 renderItem={renderItem}
                 keyExtractor={(item) => item.name}
                 ListHeaderComponent={ItemSeparator}
@@ -87,5 +106,26 @@ const clientListStyle = StyleSheet.create({
         height: 1,
         backgroundColor: '#bee2bb',
         width: '100%',
+    },
+    searchContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+
+        backgroundColor: 'white',
+        
+        height: 60,
+
+        borderRadius: 50,
+        marginBottom: 10,
+        paddingLeft: 20,
+    },
+    searchIcon: {
+        width: 20,
+        height: 20,
+        marginRight: 10,
+    },
+    searchBar: {
+        flex: 1,
+        fontSize: 20,
     },
 });
