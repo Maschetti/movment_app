@@ -33,13 +33,11 @@ export default function ClientList({ clientList }: ClientListProps) {
     const renderItem = ({ item }: { item: ItemProps }) => {
         const backgroundColor = getBackgroundColor(item.days);
         return (
-            <View>
-                <View style={clientListStyle.item}>
-                    <View style={[clientListStyle.circle, { backgroundColor }]}>
-                        <Text style={clientListStyle.days}>{item.days}</Text>
-                    </View>
-                    <Text style={clientListStyle.text}>{item.name}</Text>
+            <View style={clientListStyle.item}>
+                <View style={[clientListStyle.circle, { backgroundColor }]}>
+                    <Text style={clientListStyle.days}>{item.days}</Text>
                 </View>
+                <Text style={clientListStyle.text}>{item.name}</Text>
             </View>
         );
     };
@@ -77,6 +75,7 @@ export default function ClientList({ clientList }: ClientListProps) {
                 ListHeaderComponent={ItemSeparator}
                 ListFooterComponent={ItemSeparator}
                 ItemSeparatorComponent={ItemSeparator}
+                showsVerticalScrollIndicator={false}
             />
         </View>
     );
