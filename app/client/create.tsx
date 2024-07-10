@@ -16,7 +16,7 @@ export default function CreateClientPage() {
     const validateEmail = (email: string): boolean => {
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return regex.test(email);
-    };W
+    };
 
     const handleSubmit = () => {
         let valid = true;
