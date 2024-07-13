@@ -22,7 +22,7 @@ const getBackgroundColor = (days: number) => {
     }
 };
 
-function ItemSeparator() {
+export function ItemSeparator() {
     return (
         <View style={clientListStyle.separator} />
     )
