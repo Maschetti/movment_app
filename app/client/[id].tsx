@@ -115,10 +115,6 @@ export default function UserInfoPage() {
             valid = false;
             newErrors.email = 'O email é inválido';
         }
-        if (!days) {
-            valid = false;
-            newErrors.days = 'Coloque o número de aulas';
-        }
 
         if (valid) {
             Alert.alert('Form Submitted', `Name: ${name}\nEmail: ${email}\nNumber of Days: ${days}`);
@@ -156,15 +152,10 @@ export default function UserInfoPage() {
             />
             {errors.email && <Text style={styles.errorText}>{errors.email}</Text>}
 
-            <Text style={styles.label}>Número de aulas</Text>
-            <TextInput
-                style={styles.input}
-                value={days}
-                onChangeText={setDays}
-                placeholder="Coloque o número de aulas"
-                keyboardType="numeric"
-            />
-            {errors.days && <Text style={styles.errorText}>{errors.days}</Text>}
+            <View style={styles.daysContainer}>
+                <Text style={styles.label}>Número de aulas</Text>
+                <Text style={[styles.label, styles.days]}>{days}</Text>
+            </View>
 
             <TouchableOpacity style={styles.button} onPress={handleSubmit}>
                 <Text style={styles.buttonText}>Salvar</Text>
@@ -268,5 +259,18 @@ const styles = StyleSheet.create({
     listText: {
         textAlign: 'left',
         fontSize: 20,
+    },
+    daysContainer: {
+        width: '100%',
+        flexDirection: 'row',
+        gap: 10,
+    },
+    days: {
+        backgroundColor: 'white',
+        width: 30,
+        height: 30,
+        textAlign: 'center',
+        textAlignVertical: 'center',
+        borderRadius: 5,
     }
 });
