@@ -1,6 +1,7 @@
 import { useRouter } from 'expo-router';
 import React, { useState, useRef } from 'react';
 import { FlatList, View, Text, StyleSheet, TextInput, Image, TouchableOpacity, Alert } from 'react-native';
+import axios from 'axios'
 
 type ItemProps = {
     name: string,

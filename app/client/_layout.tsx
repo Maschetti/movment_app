@@ -29,6 +29,14 @@ export default function RootLayout() {
         options={optionWithHeader}
       />
       <Stack.Screen 
+        name="presence"
+        options={optionWithHeader}
+      />
+      <Stack.Screen 
+        name="payment"
+        options={optionWithHeader}
+      />
+      <Stack.Screen 
         name="[id]"
         options={optionWithHeader}
       />
