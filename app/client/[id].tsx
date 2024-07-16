@@ -1,5 +1,5 @@
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, Alert } from "react-native"
-import { useLocalSearchParams } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useState } from "react";
 
 type Errors = {
@@ -9,6 +9,8 @@ type Errors = {
 };
 
 export default function UserInfoPage() {
+    const router = useRouter();
+    
     const { id } = useLocalSearchParams();
     const [clients, setClients] = useState([
         {
@@ -127,12 +129,6 @@ export default function UserInfoPage() {
 
     return (
         <View style={styles.container}>
-            <View style={styles.deleteWrapper}>
-                <TouchableOpacity style={[styles.deleteButton]} onPress={onDeleteUser}>
-                    <Text style={styles.deletButtonText}>X</Text>
-                </TouchableOpacity>
-            </View>
-
             <Text style={styles.label}>Nome</Text>
             <TextInput
                 style={styles.input}
@@ -163,17 +159,21 @@ export default function UserInfoPage() {
 
             <View style={styles.separator}/>
 
-            <TouchableOpacity style={styles.listButton} onPress={handleSubmit}>
+            <TouchableOpacity style={styles.listButton} onPress={() => router.push('/client/presence')}>
                 <Text style={styles.listText}>Lista de presença</Text>
             </TouchableOpacity>
 
             <View style={styles.separator}/>
 
-            <TouchableOpacity style={styles.listButton} onPress={handleSubmit}>
+            <TouchableOpacity style={styles.listButton} onPress={() => router.push('/client/payment')}>
                 <Text style={styles.listText}>Lista de pagamentos</Text>
             </TouchableOpacity>
 
             <View style={styles.separator}/>
+
+            <TouchableOpacity style={[styles.deleteButton]} onPress={onDeleteUser}>
+                <Text style={styles.deletButtonText}>Deletar</Text>
+            </TouchableOpacity>
         </View>
     );
 }
@@ -209,10 +209,6 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         alignSelf: 'flex-start',
     },
-    deleteWrapper: {
-        width: '100%',
-        alignItems: 'flex-end',
-    },
     button: {
         backgroundColor: 'white',
         padding: 10,
@@ -222,10 +218,14 @@ const styles = StyleSheet.create({
         marginVertical: 20,
     },
     deleteButton: {
-        borderRadius: 50,
-        width: 40,
+        position: 'absolute',
+        bottom: 10,
+        right: 10,
+
+        borderRadius: 10,
+        width: 80,
         height: 40,
-        backgroundColor: '#3d3d3d',
+        backgroundColor: 'red',
         fontSize: 20,
         padding: 0,
         margin: 0,
@@ -233,7 +233,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     saveButton: {
-        backgroundColor: '',
+        backgroundColor: 'white',
     },
     buttonText: {
         color: '#3d3d3d',
