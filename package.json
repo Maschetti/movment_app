@@ -3,11 +3,11 @@
   "main": "expo-router/entry",
   "version": "1.0.0",
   "scripts": {
-    "start": "expo start",
+    "start": "concurrently \"node server.js\" \"expo start\"",
     "reset-project": "node ./scripts/reset-project.js",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web",
+    "android": "concurrently \"node server.js\" \"expo start --android\"",
+    "ios": "concurrently \"node server.js\" \"expo start --ios\"",
+    "web": "concurrently \"node server.js\" \"expo start --web\"",
     "test": "jest --watchAll",
     "lint": "expo lint"
   },
@@ -17,6 +17,7 @@
   "dependencies": {
     "@expo/vector-icons": "^14.0.2",
     "@react-navigation/native": "^6.0.2",
+    "concurrently": "^8.2.2",
     "expo": "~51.0.18",
     "expo-constants": "~16.0.2",
     "expo-font": "~12.0.7",
@@ -26,6 +27,7 @@
     "expo-status-bar": "~1.12.1",
     "expo-system-ui": "~3.0.7",
     "expo-web-browser": "~13.0.3",
+    "json-server": "^1.0.0-beta.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.74.3",
